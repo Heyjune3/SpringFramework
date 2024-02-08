@@ -23,7 +23,46 @@
  	</insert>
  	<!-- userid로 사용자 정보 검색 -->
  	<!-- java.lang.String -> String or string, java.lang.Integer -> int -->
- 	<select id="read" parameterType="String" resultType="com.bitc.db_test.vo.MemberVO">
+ 										<!-- mybatisConfig에 typeAlias로 지정 -->
+ 	<select id="read" parameterType="String" resultType="member">
 		SELECT * FROM tbl_member WHERE userid = #{userid} 	
  	</select>
+ 	
+ 	<select id="readPass" parameterType="member" resultType="member">
+ 		SELECT * FROM tbl_member WHERE userid = #{userid} AND userpw = #{userpw}
+ 	</select>
+ 	<!-- java.util.Map -->
+ 	<select id="readWithPass" parameterType="Map" resultType="member">
+ 											<!-- Map에서의 key값 : #{id,pw} -->
+ 		SELECT * FROM tbl_member WHERE userid = #{id} AND userpw = #{pw}
+ 	</select>
+ 	<!-- 
+	 	tbl table에 저장된 회원 목록을 List로 반환
+	 	selectList일 경우 resultType에는 List에 저장할 generic type만 지정
+	 -->				
+ 	<select id="memberList" resultType="member" statementType="STATEMENT">
+ 		SELECT * FROM tbl_member ORDER BY regdate DESC
+ 	</select>
+ 	
+ 	<update id="updateMember" parameterType="member">
+ 		UPDATE tbl_member SET userpw = #{userpw}, 
+ 		updatedate = now() WHERE uno = #{uno}
+ 	</update>
+ 	
+ 	<!-- 회원 정보 삭제 -->
+ 	<!-- java.lang.Integer -->
+ 	<delete id="remove" parameterType="int">
+ 		DELETE FROM tbl_member WHERE uno = #{uno}
+ 	</delete>
  </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
