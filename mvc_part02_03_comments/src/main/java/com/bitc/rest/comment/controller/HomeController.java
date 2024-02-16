@@ -12,8 +12,10 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		// Export 시킨 pageMaker.jar 파일 확인 
+		/*
 		Criteria cri = new Criteria();
 		System.out.println(cri);
+		*/
 		return "home";
 	}
 	
