@@ -1,0 +1,8 @@
+width: 67px;
+				height: 33.5px;
+				color: rgba(0, 0, 0, 0.5);
+				font-size: 15px;
+				font-family: Inter, sans-serif;
+				font-weight: normal;
+				text-align: center;
+				line-height:33px;

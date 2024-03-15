@@ -1,6 +1,7 @@
 package com.bitc.board.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 /**
@@ -11,7 +12,7 @@ public class BoardVO {
 	
 	private int bno;
 	private String title;
-	private	String content;
+	private String content;
 	private String writer;
 	private int origin;
 	private int depth;
@@ -20,5 +21,21 @@ public class BoardVO {
 	private Date updatedate;
 	private int viewcnt;
 	private String showboard;
-	private int uno;
+	private  int uno;
+	
+	// 첨부된 파일 이름 리스트
+	private List<String> files;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

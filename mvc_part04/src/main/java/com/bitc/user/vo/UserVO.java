@@ -10,4 +10,5 @@ public class UserVO {
 	private String upw;
 	private String uname;
 	private int upoint;
+	
 }

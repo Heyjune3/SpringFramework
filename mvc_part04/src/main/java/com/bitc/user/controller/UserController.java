@@ -1,7 +1,6 @@
 package com.bitc.user.controller;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitc.user.service.UserService;
 import com.bitc.user.vo.LoginDTO;
@@ -39,10 +38,9 @@ public class UserController {
 
 	
 	@PostMapping("/signUpPost")
-	public String signUpPost(UserVO vo) throws Exception{
-		
+	public String signUpPost(UserVO vo, RedirectAttributes rttr) throws Exception{
 		us.signUp(vo);
-		
+		rttr.addFlashAttribute("message","회원가입성공");
 		return "redirect:/user/signIn";
 	}
 	
@@ -58,8 +56,7 @@ public class UserController {
 	@GetMapping("/signOut")
 	public String signOut(
 			HttpServletResponse response,
-			// HttpServletRequest request ,
-			// DispatherServlet이 전달해줌
+			// HttpServletRequest request,
 			@CookieValue(name="signInCookie", required=false) Cookie cookie,
 			HttpSession session) throws Exception{
 		session.removeAttribute("userInfo");
@@ -69,10 +66,8 @@ public class UserController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		
 		return "redirect:/";
 	}
-	
 }
 
 
